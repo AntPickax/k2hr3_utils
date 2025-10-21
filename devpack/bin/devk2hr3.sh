@@ -3861,7 +3861,7 @@ if [ "${RUN_MODE}" = "start" ]; then
 			#
 			# Get hostname or IP address as default
 			#
-			if ! _LOCALHOST_DEFAULT=$(uname -n 2>/dev/null); then
+			if ! _LOCALHOST_DEFAULT=$(hostname -f 2>/dev/null); then
 				_LOCALHOST_DEFAULT=$(ip -a address 2>/dev/null | grep inet | grep -v '127\.[0-9]*\.[0-9]*\.[0-9]*' | grep -v docker | grep -v 'br-' | head -1 | awk '{print $2}' | sed -e 's#/.*$##g' | tr -d '\n')
 			fi
 			if [ -n "${_LOCALHOST_DEFAULT}" ]; then
